@@ -3,20 +3,21 @@ import { pgEnum, pgTable as table } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
 import { db, types } from "@duneanalytics/sim-idx";
 
-export const feeAmountEnabled = table("fee_amount_enabled", {
-  fee: db.uint24('fee'),
-  tickSpacing: db.int24('tick_spacing'),
-})
-
-export const ownerChanged = table("owner_changed", {
-  oldOwner: db.address('old_owner'),
-  newOwner: db.address('new_owner'),
-})
-
-export const poolCreated = table("pool_created", {
-  token0: db.address('token0'),
-  token1: db.address('token1'),
-  fee: db.uint24('fee'),
-  tickSpacing: db.int24('tick_spacing'),
-  pool: db.address('pool'),
+export const coinCreated = table("coin_created", {
+  chainId: db.uint64('chain_id'),
+  caller: db.address('caller'),
+  payoutRecipient: db.address('payout_recipient'),
+  platformReferrer: db.address('platform_referrer'),
+  currency: db.address('currency'),
+  uri: t.text('uri'),
+  name: t.text('name'),
+  symbol: t.text('symbol'),
+  coin: db.address('coin'),
+  poolKeyCurrency0: db.address('pool_key_currency0'),
+  poolKeyCurrency1: db.address('pool_key_currency1'),
+  poolKeyFee: db.uint24('pool_key_fee'),
+  poolKeyTickSpacing: db.int24('pool_key_tick_spacing'),
+  poolKeyHooks: db.address('pool_key_hooks'),
+  balanceOfPoolManager: db.uint256('balance_of_pool_manager'),
+  decimals: db.uint8('decimals'),
 })
